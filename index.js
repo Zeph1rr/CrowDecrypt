@@ -15,6 +15,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/api', router)
+app.use(express.static('uploads'))
 
 app.use(errorHandler)
 
@@ -25,7 +26,7 @@ const start = async () => {
         const candidate = await Users.findOne({where: {email: "grianton535@gmail.com"}})
         if (!candidate) {
             const hashedPassword = bcrypt.hashSync(process.env.ADMIN_PASSWORD, 8)
-            await Users.create({email: "grianton535@gmail.com", password: hashedPassword, role: 1})
+            await Users.create({email: "grianton535@gmail.com", password: hashedPassword, role: 1, name: 'Zeph1rr'})
         }
         app.listen(PORT, () => { console.log(`Server started on port ${PORT}`)})
     } catch (e) {

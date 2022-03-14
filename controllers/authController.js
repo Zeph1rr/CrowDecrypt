@@ -20,7 +20,7 @@ class AuthController {
         res.json({lines})
     }
 
-    async create(req, res, next) {
+    async registration(req, res, next) {
         try {
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
@@ -75,7 +75,7 @@ class AuthController {
     async update(req, res, next) {
         try {
             const {id} = req.params
-            if (id != req.user.id) {
+            if (Number(id) !== req.user.id) {
                 return next(ApiError.badRequest("Недостаточно прав"))
             }
             const data = req.body

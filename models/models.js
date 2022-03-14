@@ -10,4 +10,13 @@ const Users = sequelize.define('users', {
     score: {type: DataTypes.INTEGER, defaultValue: 0}
 })
 
-module.exports = {Users}
+const Tasks = sequelize.define('tasks', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    owner: {type: DataTypes.INTEGER},
+    image: {type: DataTypes.STRING}
+})
+
+Users.hasMany(Tasks)
+Tasks.belongsTo(Users)
+
+module.exports = {Users, Tasks}

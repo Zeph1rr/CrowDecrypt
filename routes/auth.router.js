@@ -7,7 +7,7 @@ const authMiddleware = require('../middleware/auth.middleware')
 router.post('/registration', [
     check('email', 'Имя пользователя не задано').notEmpty(),
     check('password', 'Пароль должен содержать минимум 6 символов').isLength({min: 6})
-], controller.create)
+], controller.registration)
 router.post('/login', [
     check('email').notEmpty(),
     check('password').notEmpty()
