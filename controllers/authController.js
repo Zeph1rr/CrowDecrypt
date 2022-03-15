@@ -75,7 +75,7 @@ class AuthController {
     async update(req, res, next) {
         try {
             const {id} = req.params
-            if (Number(id) !== req.user.id) {
+            if (Number(id) !== req.user.id && req.user.role !== 1) {
                 return next(ApiError.badRequest("Недостаточно прав"))
             }
             const data = req.body
