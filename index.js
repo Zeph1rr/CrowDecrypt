@@ -6,6 +6,7 @@ const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandling.middleware')
 const bcrypt = require("bcryptjs");
 const {Users} = require("./models/models");
+const path = require("path")
 
 
 const PORT = process.env.PORT || 5000
@@ -15,7 +16,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/api', router)
-app.use(express.static('uploads'))
+app.use('/images', express.static('uploads'))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/index.html'));
+})
 
 app.use(errorHandler)
 

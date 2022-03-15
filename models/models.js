@@ -12,11 +12,22 @@ const Users = sequelize.define('users', {
 
 const Tasks = sequelize.define('tasks', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    owner: {type: DataTypes.INTEGER},
     image: {type: DataTypes.STRING}
+})
+
+const Answers = sequelize.define('answers', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    answer: {type: DataTypes.TEXT}
 })
 
 Users.hasMany(Tasks)
 Tasks.belongsTo(Users)
 
-module.exports = {Users, Tasks}
+Tasks.hasMany(Answers)
+Answers.belongsTo(Tasks)
+
+Users.hasMany(Answers)
+Answers.belongsTo(Users)
+
+
+module.exports = {Users, Tasks, Answers}
