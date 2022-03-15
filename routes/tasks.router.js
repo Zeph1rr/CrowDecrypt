@@ -5,9 +5,9 @@ const authMiddleware = require('../middleware/auth.middleware')
 const multer = require('multer')
 const upload = multer({dest: 'uploads/'})
 
-router.get('/', controller.getAll)
-router.get('/:id', controller.getOne)
-router.get('/byowner/:owner', controller.getAllByOwner)
+router.get('/', authMiddleware, controller.getAll)
+router.get('/:id', authMiddleware, controller.getOne)
+router.get('/byowner/:owner', authMiddleware, controller.getAllByOwner)
 router.post('/', upload.single('picture'), authMiddleware, controller.addTask)
 router.delete('/:id', authMiddleware, controller.delete)
 
