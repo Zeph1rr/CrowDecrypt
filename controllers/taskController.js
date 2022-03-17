@@ -6,31 +6,31 @@ const path = require('path');
 
 class TaskController {
     async getAll(req, res) {
-        const lines = await Tasks.findAll()
+        const lines = await Tasks.findAll({order: ['id']})
         res.json({lines})
     }
 
     async getAllByOwner(req, res) {
         const {owner} = req.params
-        const lines = await Tasks.findAll({where: {userId: owner}})
+        const lines = await Tasks.findAll({where: {userId: owner}, order: ['id']})
         res.json({lines})
     }
 
     async getOne(req, res) {
         const {id} = req.params
         const task = await Tasks.findOne({where: {id}})
-        res.json(task)
+        res.json({task})
     }
 
     async addTask(req, res, next) {
         try {
             const filename = `${uuidv4()}.${req.file.originalname.split('.')[1]}`
-            fs.rename(req.file.path, path.join('uploads', filename), function (err) {
+            fs.rename(req.file.path, path.join('uploads', filename), async function (err) {
                 if (err) throw err;
-                console.log('renamed complete');
+                const task = await Tasks.create({userId: Number(req.user.id), image: filename})
+                return res.json({task})
             })
-            const task = await Tasks.create({userId: Number(req.user.id), image: filename})
-            return res.json({task})
+
 
         } catch (e) {
             console.log(e)

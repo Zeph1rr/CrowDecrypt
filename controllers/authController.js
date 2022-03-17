@@ -16,8 +16,17 @@ class AuthController {
         if (req.user.role !== 1) {
             return next(ApiError.badRequest("Недостаточно прав"))
         }
-        const lines = await Users.findAll()
+        const lines = await Users.findAll({order: ['id']})
         res.json({lines})
+    }
+
+    async getOne(req, res, next) {
+        const {id} = req.params
+        const user = await Users.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.badRequest("Такого пользователя не существует"))
+        }
+        return res.json({user})
     }
 
     async registration(req, res, next) {
@@ -26,13 +35,13 @@ class AuthController {
             if (!errors.isEmpty()) {
                 return next(ApiError.badRequest(errors))
             }
-            const {email, password} = req.body
+            const {email, password, name} = req.body
             const candidate = await Users.findOne({where: {email}})
             if (candidate) {
                 return next(ApiError.badRequest('Такой пользователь уже существует'))
             }
             const hashedPassword = bcrypt.hashSync(password, 8)
-            const user = await Users.create({email, password: hashedPassword})
+            const user = await Users.create({email, password: hashedPassword, name})
             const token = generateJWT({id: user.id, role: user.role})
             res.status(201).json(token)
         } catch (e) {

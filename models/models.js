@@ -7,7 +7,7 @@ const Users = sequelize.define('users', {
     role: {type: DataTypes.INTEGER, defaultValue: 0},
     password: {type: DataTypes.STRING},
     name: {type: DataTypes.STRING, defaultValue: `UserName`},
-    score: {type: DataTypes.INTEGER, defaultValue: 0}
+    answersCount: {type: DataTypes.INTEGER, defaultValue: 0}
 })
 
 const Tasks = sequelize.define('tasks', {
