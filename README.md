@@ -6,9 +6,7 @@
 
 ```cp .env.example env_values```
 
-2. Change settings for postgres in docker.compose.yaml
-
 3. Update env_values with your values
 4. Start project with command:
 
-```docker-compose run```
+```docker-compose --env-file env_values up```
