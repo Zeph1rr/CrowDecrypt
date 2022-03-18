@@ -36,9 +36,9 @@ services:
       - "-c"
       - "pg_stat_statements.track=all"
     environment:
-      POSTGRES_DB: "zalupafilina"
-      POSTGRES_USER: "filin"
-      POSTGRES_PASSWORD: "6458loik"
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
       - ./data:/var/lib/postgresql/data
@@ -48,11 +48,11 @@ services:
 
   app:
     container_name: app
-    image: zeph1rr/manualdocs:1.0.0
+    image: zeph1rr/manualdocs:${TAG}
     env_file:
       - env_values
     ports:
-      - "3000:3000"
+      - ${PORT}:${PORT}
     restart: unless-stopped
     networks:
       - zalupafilina
