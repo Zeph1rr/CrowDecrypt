@@ -1,10 +1,14 @@
 # ZalupaFilina
 
-## CONTACTS
+## USAGE
 
-If you have any questions about this repository, you can contact me by telegram (@Zeph1rr) or by
-email (<grianton535@gmail.com>)
+1. Create env file with command:
 
-## DOCUMENTATION
+```cp .env.example env_values```
 
-- [API Documentation](/APIDoc.md)
+2. Change settings for postgres in docker.compose.yaml
+
+3. Update env_values with your values
+4. Start project with command:
+
+```docker-compose run```
