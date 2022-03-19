@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "start", ">", "/var/log/crowdecrypt-$(date -I).log"]
