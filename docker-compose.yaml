@@ -44,7 +44,7 @@ services:
       - ./data:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
-      - zalupafilina
+      - crowdecrypt
 
   app:
     container_name: app
@@ -55,8 +55,8 @@ services:
       - ${PORT}:${PORT}
     restart: unless-stopped
     networks:
-      - zalupafilina
+      - crowdecrypt
 
 
 networks:
-  zalupafilina:
+  crowdecrypt:
