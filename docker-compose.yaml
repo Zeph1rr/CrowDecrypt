@@ -54,7 +54,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - logs/:/var/log/crowdecrypt
+      - ./logs/:/var/log/crowdecrypt
     restart: unless-stopped
     networks:
       - crowdecrypt
