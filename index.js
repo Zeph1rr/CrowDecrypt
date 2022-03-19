@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const sequelize = require('./db')
 const cors = require('cors')
@@ -7,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const {Users} = require("./models/models");
 const path = require("path")
 
+console.log(process.env)
 
 const PORT = process.env.PORT || 5000
 
