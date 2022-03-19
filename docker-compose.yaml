@@ -48,7 +48,7 @@ services:
 
   app:
     container_name: app
-    image: zeph1rr/manualdocs:${TAG}
+    image: zeph1rrio/crowdecrypt:${TAG}
     env_file:
       - env_values
     ports:
