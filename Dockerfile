@@ -2,6 +2,8 @@ FROM node:12
 
 WORKDIR /app
 
+RUN mkdir -p /var/log/crowdecrypt
+
 COPY package*.json ./
 
 RUN npm ci --production
@@ -10,4 +12,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start", ">", "/var/log/crowdecrypt-$(date -I).log"]
+CMD ["npm", "start", ">", "/var/log/crowdecrypt/crowdecrypt-$(date -I).log"]
