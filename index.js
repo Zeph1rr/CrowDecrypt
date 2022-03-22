@@ -7,6 +7,7 @@ const errorHandler = require('./middleware/ErrorHandling.middleware')
 const bcrypt = require("bcryptjs");
 const {Users} = require("./models/models");
 const path = require("path")
+const logging = require("src/logger")
 
 const env_values = {
     "PORT": process.env.PORT,
@@ -44,9 +45,7 @@ const start = async () => {
             await Users.create({email: "grianton535@gmail.com", password: hashedPassword, role: 1, name: 'Zeph1rr'})
         }
         app.listen(PORT, () => {
-            console.log(`Server started on port ${PORT}`)
-            console.log('Server started with env_values:')
-            console.log(env_values)
+            logging({message: `Server started on port ${PORT}`})
         })
     } catch (e) {
         console.log(`ERROR: ${e}`)

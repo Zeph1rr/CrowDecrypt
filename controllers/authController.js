@@ -3,6 +3,7 @@ const {Users} = require('../models/models')
 const {validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const logging = require("src/logger")
 
 const generateJWT = (payload) => {
     return jwt.sign(payload,
@@ -43,6 +44,7 @@ class AuthController {
             const hashedPassword = bcrypt.hashSync(password, 8)
             const user = await Users.create({email, password: hashedPassword, name})
             const token = generateJWT({id: user.id, role: user.role})
+            logging({message: `registred new user with email ${user.email}`})
             res.status(201).json(token)
         } catch (e) {
            return next(ApiError.internal("Неизвестная ошибка"))
@@ -73,11 +75,16 @@ class AuthController {
     }
 
     async delete(req, res, next) {
-        if (req.user.role !== 1) {
+        const {id} = req.params
+        if (req.user.role !== 1 || req.user.id !== id) {
             return next(ApiError.badRequest("Недостаточно прав"))
         }
-        const {id} = req.params
+        const user = await Users.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.badRequest("Такого пользователя не существует"))
+        }
         const deleted = await Users.destroy({where: {id}})
+        logging({message: `deleted user with email ${user.email}`})
         res.json({deleted})
     }
 
