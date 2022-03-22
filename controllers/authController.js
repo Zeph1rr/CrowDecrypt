@@ -76,7 +76,7 @@ class AuthController {
 
     async delete(req, res, next) {
         const {id} = req.params
-        if (req.user.role !== 1 || req.user.id !== id) {
+        if (req.user.role !== 1 && req.user.id !== Number(id)) {
             return next(ApiError.badRequest("Недостаточно прав"))
         }
         const user = await Users.findOne({where: {id}})
