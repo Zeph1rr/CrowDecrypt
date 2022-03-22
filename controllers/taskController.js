@@ -11,8 +11,8 @@ class TaskController {
     }
 
     async getAllByOwner(req, res) {
-        const {owner} = req.params
-        const lines = await Tasks.findAll({where: {userId: owner}, order: ['id']})
+        const {id} = req.params
+        const lines = await Tasks.findAll({where: {userId: id}, order: ['id']})
         res.json({lines})
     }
 
@@ -30,10 +30,7 @@ class TaskController {
                 const task = await Tasks.create({userId: Number(req.user.id), image: filename})
                 return res.json({task})
             })
-
-
         } catch (e) {
-            console.log(e)
             return next(ApiError.internal("Неизвестная ошибка"))
         }
     }
@@ -47,6 +44,7 @@ class TaskController {
         fs.rm(path.join('uploads', task.image), async function (err) {
             if (err) throw err;
             const deleted = await Tasks.destroy({where: {id}})
+            logging({data})
             res.json({deleted})
         })
     }

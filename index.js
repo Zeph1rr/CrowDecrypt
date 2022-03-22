@@ -4,10 +4,9 @@ const sequelize = require('./db')
 const cors = require('cors')
 const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandling.middleware')
-const bcrypt = require("bcryptjs");
-const {Users} = require("./models/models");
+const bcrypt = require("bcryptjs")
+const {Users} = require("./models/models")
 const path = require("path")
-
 
 const PORT = process.env.PORT || 5000
 
@@ -34,12 +33,13 @@ const start = async () => {
             const hashedPassword = bcrypt.hashSync(process.env.ADMIN_PASSWORD, 8)
             await Users.create({email: "grianton535@gmail.com", password: hashedPassword, role: 1, name: 'Zeph1rr'})
         }
-        app.listen(PORT, () => { console.log(`Server started on port ${PORT}`)})
+        app.listen(PORT, () => {
+            console.log(`Server started on port ${PORT}`)
+        })
     } catch (e) {
         console.log(`ERROR: ${e}`)
     }
 
 }
-
 
 start()

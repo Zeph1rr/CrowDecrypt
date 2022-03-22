@@ -33,7 +33,6 @@ class AnswerController {
             const answer = await Answers.create({answer: text, taskId, userId: user.id})
             res.json({answer})
         } catch (e) {
-            console.log(e)
             return next(ApiError.internal("Неизвестная ошибка"))
         }
     }

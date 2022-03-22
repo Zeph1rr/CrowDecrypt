@@ -42,8 +42,7 @@ class AuthController {
             }
             const hashedPassword = bcrypt.hashSync(password, 8)
             const user = await Users.create({email, password: hashedPassword, name})
-            const token = generateJWT({id: user.id, role: user.role})
-            res.status(201).json(token)
+            res.status(201).json({message: "Success"})
         } catch (e) {
            return next(ApiError.internal("Неизвестная ошибка"))
         }
@@ -67,16 +66,19 @@ class AuthController {
             const token = generateJWT({id: candidate.id, role: candidate.role})
             res.json({token})
         } catch (e) {
-            console.log(e)
             return next(ApiError.internal("Неизвестная ошибка, попробуйте снова"))
         }
     }
 
     async delete(req, res, next) {
-        if (req.user.role !== 1) {
+        const {id} = req.params
+        if (req.user.role !== 1 && req.user.id !== Number(id)) {
             return next(ApiError.badRequest("Недостаточно прав"))
         }
-        const {id} = req.params
+        const user = await Users.findOne({where: {id}})
+        if (!user) {
+            return next(ApiError.badRequest("Такого пользователя не существует"))
+        }
         const deleted = await Users.destroy({where: {id}})
         res.json({deleted})
     }
