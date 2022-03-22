@@ -18,6 +18,12 @@ class AuthController {
             return next(ApiError.badRequest("Недостаточно прав"))
         }
         const lines = await Users.findAll({order: ['id']})
+        const data = {
+            method: req.method,
+            url: req.originalUrl,
+            user: req.user.id,
+        }
+        logging({data})
         res.json({lines})
     }
 
@@ -27,6 +33,13 @@ class AuthController {
         if (!user) {
             return next(ApiError.badRequest("Такого пользователя не существует"))
         }
+        const data = {
+            method: req.method,
+            url: req.originalUrl,
+            user: req.user.id,
+            target: user.id,
+        }
+        logging({data})
         return res.json({user})
     }
 
@@ -44,7 +57,12 @@ class AuthController {
             const hashedPassword = bcrypt.hashSync(password, 8)
             const user = await Users.create({email, password: hashedPassword, name})
             const token = generateJWT({id: user.id, role: user.role})
-            logging({message: `registred new user with email ${user.email}`})
+            const data = {
+                method: req.method,
+                url: req.originalUrl,
+                user: user.id,
+            }
+            logging({data})
             res.status(201).json(token)
         } catch (e) {
            return next(ApiError.internal("Неизвестная ошибка"))
@@ -67,9 +85,15 @@ class AuthController {
                 return next(ApiError.badRequest("Неккоректное имя пользователя или пароль"))
             }
             const token = generateJWT({id: candidate.id, role: candidate.role})
+            const data = {
+                method: req.method,
+                url: req.originalUrl,
+                user: candidate.id,
+            }
+            logging({data})
             res.json({token})
         } catch (e) {
-            console.log(e)
+            logging({error: e})
             return next(ApiError.internal("Неизвестная ошибка, попробуйте снова"))
         }
     }
@@ -84,7 +108,13 @@ class AuthController {
             return next(ApiError.badRequest("Такого пользователя не существует"))
         }
         const deleted = await Users.destroy({where: {id}})
-        logging({message: `deleted user with email ${user.email}`})
+        const data = {
+            method: req.method,
+            url: req.originalUrl,
+            user: req.user.id,
+            target: user.id,
+        }
+        logging({data})
         res.json({deleted})
     }
 
@@ -105,10 +135,18 @@ class AuthController {
             const updated = await Users.update({...data}, {where: {id}})
             if (updated) {
                 res.json({message: "Данные успешно обновлены"})
+                const data = {
+                    method: req.method,
+                    url: req.originalUrl,
+                    user: req.user.id,
+                    target: user.id,
+                }
+                logging({data})
             } else {
                 next(ApiError.internal("Неизвестная ошибка"))
             }
         } catch (e) {
+            logging({error: e})
             next(ApiError.internal("Неизвестная ошибка"))
         }
     }
