@@ -3,7 +3,7 @@ const {Users} = require('../models/models')
 const {validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const logging = require("src/logger")
+const logging = require("../src/logger")
 
 const generateJWT = (payload) => {
     return jwt.sign(payload,

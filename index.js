@@ -7,7 +7,7 @@ const errorHandler = require('./middleware/ErrorHandling.middleware')
 const bcrypt = require("bcryptjs");
 const {Users} = require("./models/models");
 const path = require("path")
-const logging = require("src/logger")
+const logging = require("./src/logger")
 
 const env_values = {
     "PORT": process.env.PORT,
