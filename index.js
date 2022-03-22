@@ -7,7 +7,6 @@ const errorHandler = require('./middleware/ErrorHandling.middleware')
 const bcrypt = require("bcryptjs")
 const {Users} = require("./models/models")
 const path = require("path")
-const loggingMiddleware = require("./middleware/logging.middleware")
 
 const PORT = process.env.PORT || 5000
 
@@ -15,7 +14,6 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(loggingMiddleware)
 app.use('/api', router)
 app.use('/images', express.static('uploads'))
 app.use('/assets', express.static('templates/assets'))
