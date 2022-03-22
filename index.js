@@ -16,10 +16,11 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/api', router)
-app.use('/images', express.static('uploads'))
-app.use('/assets', express.static('templates/assets'))
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/templates/index.html'));
+const root = path.join(__dirname, 'client', 'build')
+app.use(express.static(root));
+app.use(express.static(path.join(root, "static")));
+app.get("*", (req, res) => {
+    res.sendFile('index.html', { root });
 })
 
 app.use(errorHandler)

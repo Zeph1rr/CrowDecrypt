@@ -1,16 +1,13 @@
 import React from 'react';
-import Header from './components/header'
-import Footer from "./components/footer";
-import Main from "./pages/main";
+import {BrowserRouter} from "react-router-dom";
+import AppRouter from "./components/AppRouter";
 
 function App() {
   return (
-    <div>
-        <Header />
-        <Main />
-        <Footer />
-    </div>
-  );
+      <BrowserRouter>
+        <AppRouter/>
+      </BrowserRouter>
+  )
 }
 
 export default App;

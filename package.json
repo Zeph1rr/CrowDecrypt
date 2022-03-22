@@ -1,11 +1,12 @@
 {
-  "name": "mafreferee-api",
+  "name": "crowdecrypt",
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "build": "cd client && npm run build",
+    "dev": "npm run build && nodemon index"
   },
   "keywords": [],
   "author": "Zeph1rr",
