@@ -7,7 +7,7 @@ const upload = multer({dest: 'uploads/'})
 
 router.get('/', authMiddleware, controller.getAll)
 router.get('/:id', authMiddleware, controller.getOne)
-router.get('/byowner/:owner', authMiddleware, controller.getAllByOwner)
+router.get('/byowner/:id', authMiddleware, controller.getAllByOwner)
 router.post('/', upload.single('picture'), authMiddleware, controller.addTask)
 router.delete('/:id', authMiddleware, controller.delete)
 
