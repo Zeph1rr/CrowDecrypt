@@ -32,15 +32,25 @@ const Login = () => {
                     {error}
                 </div>}
                 <div className="form-floating my-1">
-                    <input type="email" className="form-control text" id="email"
-                           value={email} onChange={e => setEmail(e.target.value)} required
+                    <input
+                        type="email"
+                        className="form-control text"
+                        id="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        required
                     />
                         <label htmlFor="email" className="text">E-mail</label>
                 </div>
                 <div className="form-floating my-1">
-                    <input type="password" className="form-control text" id="password"
-                           value={password} onChange={e => setPassword(e.target.value)}
-                           autoComplete="on" required
+                    <input
+                        type="password"
+                        className="form-control text"
+                        id="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        autoComplete="on"
+                        required
                     />
                         <label htmlFor="password" className="text">Пароль</label>
                 </div>

@@ -56,7 +56,7 @@ class AuthController {
             const user = await Users.create({email, password: hashedPassword, name})
             res.status(201).json({message: "Success"})
         } catch (e) {
-           return next(ApiError.internal("Неизвестная ошибка"))
+            return next(ApiError.internal("Неизвестная ошибка"))
         }
     }
 
