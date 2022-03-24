@@ -17,6 +17,7 @@ router.post('/login', [
     check('password').notEmpty()
 ], loggingMiddleware, controller.login)
 router.get('/:id', authMiddleware, loggingMiddleware, controller.getOne)
+router.get('/username/:id', authMiddleware, loggingMiddleware, controller.getUsernameById)
 router.get('/', authMiddleware, loggingMiddleware, controller.getAll)
 router.delete('/:id', authMiddleware, loggingMiddleware, controller.delete)
 router.put('/:id', authMiddleware, loggingMiddleware, controller.update)

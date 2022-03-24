@@ -38,13 +38,15 @@ class TaskController {
     async delete(req, res, next) {
         const {id} = req.params
         const task = await Tasks.findOne({where: {id}})
+        if (!task) {
+            return next(ApiError.badRequest("Такого таска не существует"))
+        }
         if (task.userId !== Number(req.user.id) && req.user.role !== 1) {
             return next(ApiError.badRequest("Недостаточно прав"))
         }
         fs.rm(path.join('uploads', task.image), async function (err) {
             if (err) throw err;
             const deleted = await Tasks.destroy({where: {id}})
-            logging({data})
             res.json({deleted})
         })
     }

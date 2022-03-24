@@ -7,6 +7,7 @@ const loggingMiddleware = require("../middleware/logging.middleware")
 router.get('/bytask/:id', authMiddleware, loggingMiddleware, controller.getAllByTask)
 router.get('/', authMiddleware, loggingMiddleware, controller.getAll)
 router.get('/:id', authMiddleware, loggingMiddleware, controller.getOne)
+router.get('/count/:id', authMiddleware, loggingMiddleware, controller.getCountByTask)
 router.post('/', authMiddleware, loggingMiddleware, controller.add)
 router.delete('/:id', authMiddleware, loggingMiddleware, controller.delete)
 

@@ -8,7 +8,7 @@ body {
     -moz-background-image: url(../images/background.png);
     -o-background-image: url(../images/background.png);
     -webkit-background-image: url(../images/background.png);
-    max-width: 100%;
+    max-width: 95vw;
 }
 
 /* logo */
@@ -61,7 +61,7 @@ body {
 .nav-link {
     display:block;
     padding:.5rem 1rem;
-    color: #40475F;
+    color: #000;
     font-size: 1.1rem;
     font-family: veles, serif;
 }
@@ -69,18 +69,11 @@ body {
 .nav-link:hover {
     text-decoration: underline;
     cursor: pointer;
-    color: #40475F;
+    color: #000;
 }
 
-.nav-link_active {
-    text-decoration: line-through;
-    color: #40475F;
-}
-
-.nav-link_active:hover {
-    text-decoration: line-through;
-    cursor: default;
-    color: #40475F;
+.nav-link:focus {
+    color: #000;
 }
 
 .main_text {
@@ -124,4 +117,25 @@ body {
 
 .text {
     font-family: veles, serif;
+    color: #000;
+}
+
+.card {
+    background-color: transparent;
+}
+
+.list-group-item {
+    margin-left: 10px;
+    background-color: transparent;
+}
+
+.task_info {
+    font-size: 20px;
+    text-align: center;
+    vertical-align: center;
+}
+
+.card_list {
+    border-right-width: 0;
+    border-left-width: 0;
 }

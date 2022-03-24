@@ -22,11 +22,23 @@ class AuthController {
 
     async getOne(req, res, next) {
         const {id} = req.params
+        if (req.user.role !== 1 && req.user.id !== Number(id)) {
+            next(ApiError.badRequest('У вас недостаточно прав'))
+        }
         const user = await Users.findOne({where: {id}})
         if (!user) {
             return next(ApiError.badRequest("Такого пользователя не существует"))
         }
         return res.json({user})
+    }
+
+    async getUsernameById(req, res, next) {
+        const {id} = req.params
+        const user = await Users.findOne({where: {id}, attributes: ['name']})
+        if (!user) {
+            next(ApiError.badRequest("Такого пользователя не существует"))
+        }
+        return res.json({name: user.name})
     }
 
     async registration(req, res, next) {

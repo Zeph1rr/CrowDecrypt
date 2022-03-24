@@ -13,6 +13,12 @@ class AnswerController {
         res.json({lines})
     }
 
+    async getCountByTask(req, res) {
+        const taskId = req.params.id
+        const count = await Answers.count({where: {taskId}})
+        res.json({count})
+    }
+
     async getOne(req, res, next) {
         const {id} = req.params
         const answer = await Answers.findOne({where: {id}, attributes: ['id', 'answer', 'createdAt', 'userId']})

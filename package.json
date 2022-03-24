@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
     "build": "cd client && npm run build",
-    "dev": "npm run build && nodemon index"
+    "dev": "nodemon index",
+    "start": "npm run build && node index"
   },
   "keywords": [],
   "author": "Zeph1rr",

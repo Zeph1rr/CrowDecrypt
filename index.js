@@ -15,6 +15,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/api', router)
+app.use('/images', express.static('uploads'))
 const root = path.join(__dirname, 'client', 'build')
 app.use(express.static(root));
 app.use(express.static(path.join(root, "static")));
