@@ -1,0 +1,17 @@
+name: BuildAndPushDockerImage
+
+on:
+  push:
+    branches: [ frontend ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build -t zeph1rrio/crowdecrypt:{github.event.commits[0].message} .
+
+      - name: check images
+        run: docker images
