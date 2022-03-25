@@ -1,7 +1,7 @@
 # CrowDecrypt
 
 Status of Last Testing:<br>
-<img src="https://github.com/Zeph1rr/CrowDecrypt/workflows/Test/badge.svg?branch=frontend"><br>
+<img src="https://github.com/Zeph1rr/CrowDecrypt/workflows/BuildAndPushDockerImage/badge.svg?branch=frontend"><br>
 
 ## CONTACTS
 

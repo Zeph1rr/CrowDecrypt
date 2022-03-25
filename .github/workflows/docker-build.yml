@@ -5,13 +5,26 @@ on:
     branches: [ frontend ]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
 
   build:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
         run: docker build -t zeph1rrio/crowdecrypt:${{github.event.commits[0].message}} .
 
-      - name: check images
-        run: docker images
+      - name: Check images
+        run: docker images | grep ${{github.event.commits[0].message}}
