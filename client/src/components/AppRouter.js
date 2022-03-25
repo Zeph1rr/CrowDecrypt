@@ -4,11 +4,21 @@ import {authRoutes, publicRoutes} from "../routes";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "../pages/Main";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MAIN_ROUTE} from "../utils/constants";
 
 const AppRouter = () => {
-    const {isAuth} = useSelector(state => state)
+    const {isAuth, user} = useSelector(state => state)
+    const dispatch = useDispatch()
+    if (isAuth) {
+        const currentTimestamp = Math.round(new Date().getTime()/1000.0)
+        const expTimestamp = Number(user.exp)
+        if (expTimestamp < currentTimestamp) {
+            localStorage.removeItem('Token')
+            dispatch({type: 'LOGOUT', payload: {}})
+        }
+    }
+
     return (
         <>
             <Header/>

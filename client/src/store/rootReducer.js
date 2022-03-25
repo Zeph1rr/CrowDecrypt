@@ -1,10 +1,12 @@
 import jwtDecode from "jwt-decode";
 
 let defaultState = {}
-const token = localStorage.getItem('Token')
-if (token){
+
+if (localStorage.hasOwnProperty('Token')){
+    const token = localStorage.getItem('Token')
+    const userData = jwtDecode(token)
     defaultState = {
-        user: jwtDecode(token),
+        user: userData,
         isAuth: true
     }
 } else {
