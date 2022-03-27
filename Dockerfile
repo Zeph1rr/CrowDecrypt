@@ -14,4 +14,4 @@ RUN cd client && npm ci --production
 
 EXPOSE 3000
 
-CMD ["node", "index"]
+CMD ["npm", "start"]
