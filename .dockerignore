@@ -4,3 +4,6 @@ npm-debug.log
 .env.example
 .editorconfig
 .github
+.gi*
+README.md
+Dockerfile
