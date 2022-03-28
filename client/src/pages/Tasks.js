@@ -27,11 +27,11 @@ const Tasks = () => {
         fetchData()
     }, [])
     return (
-        <>
+        <div className="container">
             {!isLoading && tasks.length > 0 && tasksComponent()}
             {!isLoading && !tasks.length && <h1 className="text">Нет заданий</h1> }
             {isLoading && <h1 className="text">Загрузка...</h1>}
-        </>
+        </div>
     )
 };
 
