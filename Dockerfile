@@ -12,6 +12,8 @@ COPY . .
 
 RUN cd client && npm ci --production
 
+RUN npm run build
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
