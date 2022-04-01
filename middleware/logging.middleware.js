@@ -10,7 +10,8 @@ const loggingMiddleware = (req, res, next) => {
         logPath = "/var/log/crowdecrypt"
     }
     const data = {
-        timestamp: new Date().format("y-M-d HH:mm:SS.ms"),
+        timestamp: new Date().format("yyyy-MM-dd HH:mm:SS.ms"),
+        from: req.ip,
         method: req.method,
         url: req.originalUrl,
         user: req.user ? req.user.id : "Not authenticated",

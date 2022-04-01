@@ -34,7 +34,7 @@ const Login = () => {
                 <div className="form-floating my-1">
                     <input
                         type="email"
-                        className="form-control text"
+                        className="form-control"
                         id="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
@@ -45,7 +45,7 @@ const Login = () => {
                 <div className="form-floating my-1">
                     <input
                         type="password"
-                        className="form-control text"
+                        className="form-control"
                         id="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}

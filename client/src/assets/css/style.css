@@ -106,10 +106,17 @@ body {
     background-color: #ffffff;
     border-color: #ffffff;
     color: black;
+    margin-top: 10px;
 }
 .btn-primary:hover{
     background-color: #ad9a86;
     border-color: #ad9a86;
+    color: black;
+}
+
+.btn-primary:disabled{
+    background-color: #ffffff;
+    border-color: #ffffff;
     color: black;
 }
 

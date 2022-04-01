@@ -1,23 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {getTask, sendAnswer} from "../http/userAPI";
+import {useSelector} from "react-redux";
 
 const TaskDetails = () => {
     const {id} = useParams()
 
+    const {user} = useSelector(state => state)
     const [task, setTask] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [answer, setAnswer] = useState('')
     const [owner, setOwner] = useState('')
     const [answersCount, setAnswersCount] = useState(0)
-    const imageLink = `/images/${task.image}`
+    const [isAnswered, setIsAnswered] = useState(false)
+    const imageLink = `/images/${task.image}` || '/images/null'
+
+    const check_answers = (answers) => {
+        answers.forEach(item => {
+            if (item.userId === user.id) {
+                setIsAnswered(true)
+                setAnswer(item.answer)
+            }
+        })
+    }
 
     const fetchData = async () => {
         try {
-            const {taskInfo, username, count} = await getTask(id)
+            const {taskInfo, username, count, answers} = await getTask(id)
             setTask(taskInfo)
             setOwner(username)
             setAnswersCount(count)
+            check_answers(answers)
             setIsLoading(false)
         } catch (e) {
             console.log(e)
@@ -45,10 +58,10 @@ const TaskDetails = () => {
                     <div className="w-25 d-flex justify-content-center align-content-center flex-column">
                         <p className="text task_info">Автор: {owner}</p>
                         <p className="text task_info">Ответов: {answersCount}</p>
-                        <a href={imageLink} className="nav-link text task_info">Открыть картинку на весь экран</a>
-                        <button onClick={async (e) => {await send(e)}} className="btn btn-primary text">Отправить ответ на задание</button>
+                        <a href={imageLink} className="btn btn-primary text task_info">Открыть картинку на весь экран</a>
+                        <button disabled={isAnswered} onClick={async (e) => {await send(e)}} className="btn btn-primary text">{isAnswered ? 'Вы уже ответили на это задание' : 'Отправить ответ на задание'}</button>
                     </div>
-                    <textarea className="w-25" value={answer} onChange={e => setAnswer(e.target.value)} />
+                    <textarea className="w-25" disabled={isAnswered} value={answer} onChange={e => setAnswer(e.target.value)} />
                 </div>
             </div>
         )
