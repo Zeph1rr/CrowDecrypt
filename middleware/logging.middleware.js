@@ -10,13 +10,14 @@ const loggingMiddleware = (req, res, next) => {
         logPath = "/var/log/crowdecrypt"
     }
 
-    const remoteIP = req.ip.split(":")[-1]
+    const remoteIP = req.ip.split(":").pop()
+    console.log(typeof(remoteIP))
 
     const today = new Date().format("yyyy-MM-dd")
     const now = new Date().format("yyyy-MM-dd HH:mm:SS.ms")
     const data = {
         timestamp: now,
-        from: remoteIP,
+        remoteIP,
         method: req.method,
         url: req.originalUrl,
         user: req.user ? req.user.id : "Not authenticated",
