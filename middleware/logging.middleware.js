@@ -9,8 +9,9 @@ const loggingMiddleware = (req, res, next) => {
     } else {
         logPath = "/var/log/crowdecrypt"
     }
+    const today = new Date().format("yyyy-MM-dd HH:mm:SS.ms")
     const data = {
-        timestamp: new Date().format("yyyy-MM-dd HH:mm:SS.ms"),
+        timestamp: today,
         from: req.ip,
         method: req.method,
         url: req.originalUrl,
@@ -18,7 +19,7 @@ const loggingMiddleware = (req, res, next) => {
         target: req.params.id ? req.params.id : "Not params"
     }
     console.log(data)
-    fs.appendFile(path.join(logPath, `log-${new Date().format("y-M-d")}.txt`), JSON.stringify(data) + '\n', err => {
+    fs.appendFile(path.join(logPath, `log-${today}.txt`), JSON.stringify(data) + '\n', err => {
         if (err) throw err
     })
     next()
