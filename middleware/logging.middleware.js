@@ -12,9 +12,10 @@ const loggingMiddleware = (req, res, next) => {
 
     const remoteIP = req.ip.split(":")[-1]
 
-    const today = new Date().format("yyyy-MM-dd HH:mm:SS.ms")
+    const today = new Date().format("yyyy-MM-dd")
+    const now = new Date().format("yyyy-MM-dd HH:mm:SS.ms")
     const data = {
-        timestamp: today,
+        timestamp: now,
         from: remoteIP,
         method: req.method,
         url: req.originalUrl,
