@@ -38,3 +38,9 @@ export const sendAnswer = async (text, taskId) => {
     const response = await $authHost.post('/api/answers/', {text, taskId})
     return response
 }
+
+export const addTask = async (file) => {
+    const formData = new FormData()
+    formData.append('picture', file)
+    return await $authHost.post('/api/tasks/', formData)
+}

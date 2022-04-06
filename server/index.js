@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/api', router)
 app.use('/images', express.static('uploads'))
-const root = path.join(__dirname, 'build')
+const root = (process.platform === "win32") ? path.join(__dirname, '..', 'client', 'build') : path.join(__dirname, 'build')
 app.use(express.static(root));
 app.use(express.static(path.join(root, "static")));
 app.get("*", (req, res) => {

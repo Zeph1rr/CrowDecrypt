@@ -24,7 +24,7 @@ class TaskController {
 
     async addTask(req, res, next) {
         try {
-            const filename = `${uuidv4()}.${req.file.originalname.split('.')[1]}`
+            const filename = `${uuidv4()}.${req.file.originalname.split('.').pop()}`
             fs.rename(req.file.path, path.join('uploads', filename), async function (err) {
                 if (err) throw err;
                 const task = await Tasks.create({userId: Number(req.user.id), image: filename})
