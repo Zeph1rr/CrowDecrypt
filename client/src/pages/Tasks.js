@@ -32,6 +32,7 @@ const Tasks = () => {
 
     async function fetchData() {
         try {
+            setIsLoading(true)
             setTasks(await getTasks())
             setIsLoading(false)
         } catch (e) {
