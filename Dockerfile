@@ -4,15 +4,13 @@ WORKDIR /app
 
 RUN mkdir -p /var/log/crowdecrypt
 
-COPY package*.json ./
+COPY ./server/package*.json ./
 
 RUN npm ci --production
 
-COPY . .
+COPY ./server/* .
 
-RUN cd client && npm ci --production
-
-RUN npm run build
+COPU ./client/build/* ./build/
 
 EXPOSE 3000
 

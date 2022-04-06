@@ -23,6 +23,10 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@v2
+
+      - name: Build the react app
+        run: cd client && npm ci --production
+
       - name: Build the Docker image
         run: docker build -t zeph1rrio/crowdecrypt:${{github.event.commits[0].message}}-SNAPSHOT .
 
