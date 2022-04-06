@@ -8,7 +8,7 @@ COPY ./server/package*.json ./
 
 RUN npm ci --production
 
-COPY ./server/* .
+COPY ./server/* ./
 
 COPY ./client/build/* ./build/
 
