@@ -10,7 +10,7 @@ RUN npm ci --production
 
 COPY ./server/* .
 
-COPU ./client/build/* ./build/
+COPY ./client/build/* ./build/
 
 EXPOSE 3000
 
