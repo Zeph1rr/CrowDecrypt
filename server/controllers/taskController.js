@@ -1,12 +1,19 @@
 const ApiError = require('../error/ApiError')
-const {Tasks} = require('../models/models')
+const {Tasks, Users} = require('../models/models')
 const {v4: uuidv4} = require('uuid');
 const fs = require('fs');
 const path = require('path');
 
 class TaskController {
     async getAll(req, res) {
-        const lines = await Tasks.findAll({order: ['id']})
+        const lines = await Tasks.findAll({
+            order: ['id'],
+            include: [{
+                model: Users,
+                attributes: ["name"]
+            }],
+            attributes: ["id", "createdAt"]
+        })
         res.json({lines})
     }
 
@@ -18,7 +25,13 @@ class TaskController {
 
     async getOne(req, res) {
         const {id} = req.params
-        const task = await Tasks.findOne({where: {id}})
+        const task = await Tasks.findOne({
+            where: {id},
+            include: [{
+                model: Users,
+                attributes: ["name"]
+            }]
+        })
         res.json({task})
     }
 

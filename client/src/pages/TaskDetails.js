@@ -10,7 +10,6 @@ const TaskDetails = () => {
     const [task, setTask] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [answer, setAnswer] = useState('')
-    const [owner, setOwner] = useState('')
     const [answersCount, setAnswersCount] = useState(0)
     const [isAnswered, setIsAnswered] = useState(false)
     const imageLink = `/images/${task.image}` || '/images/null'
@@ -26,9 +25,8 @@ const TaskDetails = () => {
 
     const fetchData = async () => {
         try {
-            const {taskInfo, username, count, answers} = await getTask(id)
+            const {taskInfo, count, answers} = await getTask(id)
             setTask(taskInfo)
-            setOwner(username)
             setAnswersCount(count)
             check_answers(answers)
             setIsLoading(false)
@@ -56,7 +54,7 @@ const TaskDetails = () => {
                 <div className="row align-content-center justify-content-around">
                     <img className="w-25" src={imageLink} alt="Изображение"/>
                     <div className="w-25 d-flex justify-content-center align-content-center flex-column">
-                        <p className="text task_info">Автор: {owner}</p>
+                        <p className="text task_info">Автор: {task.user.name}</p>
                         <p className="text task_info">Ответов: {answersCount}</p>
                         <a href={imageLink} className="btn btn-primary text task_info">Открыть картинку на весь экран</a>
                         <button disabled={isAnswered} onClick={async (e) => {await send(e)}} className="btn btn-primary text">{isAnswered ? 'Вы уже ответили на это задание' : 'Отправить ответ на задание'}</button>

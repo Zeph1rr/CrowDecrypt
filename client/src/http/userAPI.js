@@ -16,19 +16,12 @@ export const getTasks = async () => {
     return data.lines
 }
 
-export const getUsername = async (id) => {
-    const {data} = await $authHost.get(`/api/users/username/${id}`)
-    return data.name
-}
-
 export const getTask = async (id) => {
     const task = await $authHost.get(`/api/tasks/${id}`)
-    const username = await getUsername(task.data.task.userId)
     const answers = await $authHost.get(`/api/answers/bytask/${id}`)
     const answersCount = answers.data.lines.length
     return {
         taskInfo: task.data.task,
-        username,
         answers: answers.data.lines,
         count: answersCount
     }

@@ -22,7 +22,6 @@ app.use(express.static(path.join(root, "static")));
 app.get("*", (req, res) => {
     res.sendFile('index.html', { root });
 })
-
 app.use(errorHandler)
 
 const start = async () => {
@@ -44,3 +43,4 @@ const start = async () => {
 }
 
 start()
+

@@ -3,8 +3,8 @@ const router = new Router()
 const controller = require('../controllers/taskController')
 const authMiddleware = require('../middleware/auth.middleware')
 const multer = require('multer')
-const loggingMiddleware = require("../middleware/logging.middleware");
 const upload = multer({dest: 'uploads/'})
+const loggingMiddleware = require('../middleware/logging.middleware')
 
 router.get('/', authMiddleware, loggingMiddleware, controller.getAll)
 router.get('/:id', authMiddleware, loggingMiddleware, controller.getOne)

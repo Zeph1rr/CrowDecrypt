@@ -1,6 +1,7 @@
 const ApiError = require('../error/ApiError')
 const {Answers, Users} = require('../models/models')
 
+
 class AnswerController {
     async getAll(req, res) {
         const lines = await Answers.findAll({order: ['id']})
