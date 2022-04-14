@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import {getUsername} from "../http/userAPI";
+import React from 'react';
 import {Link} from "react-router-dom";
 import { format } from "date-fns";
 

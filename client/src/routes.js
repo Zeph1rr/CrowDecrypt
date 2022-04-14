@@ -1,8 +1,9 @@
 import Login from "./pages/Login";
-import {LK_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, TASK_ROUTE, TASKS_ROUTE} from "./utils/constants";
+import {LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TASK_ROUTE, TASKS_ROUTE} from "./utils/constants";
 import Registration from "./pages/Registration";
 import Tasks from "./pages/Tasks";
 import TaskDetails from "./pages/TaskDetails";
+import Profile from "./pages/Profile";
 
 
 
@@ -14,6 +15,10 @@ export const authRoutes = [
     {
         path: TASK_ROUTE,
         Component: <TaskDetails />
+    },
+    {
+        path: PROFILE_ROUTE,
+        Component: <Profile />
     }
 ]
 
@@ -45,7 +50,7 @@ export const authNavbar = [
         name: 'Задания'
     },
     {
-        link: LK_ROUTE,
+        link: PROFILE_ROUTE,
         name: 'Личный кабинет'
     }
 ]

@@ -146,3 +146,7 @@ body {
     border-right-width: 0;
     border-left-width: 0;
 }
+
+.col-4 {
+    width: 33.33333333% !important;
+}

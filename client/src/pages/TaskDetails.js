@@ -40,11 +40,11 @@ const TaskDetails = () => {
     }, [])
 
     const send = async (e) => {
+        e.preventDefault()
         setIsLoading(true)
-        const response = await sendAnswer(answer, task.id)
+        sendAnswer(answer, task.id)
         await fetchData()
         setIsLoading(false)
-        console.log(response)
     }
 
     const taskDetailsComponent = () => {

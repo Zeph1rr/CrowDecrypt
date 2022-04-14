@@ -11,6 +11,10 @@ export const registration = async (email, password, name) => {
     return await $host.post('/api/users/registration', {email, password, name})
 }
 
+export const changePassword = async (id ,password) => {
+    return await $authHost.put(`/api/users/${id}`, {password})
+}
+
 export const getTasks = async () => {
     const {data} = await $authHost.get('/api/tasks')
     return data.lines
@@ -36,4 +40,8 @@ export const addTask = async (file) => {
     const formData = new FormData()
     formData.append('picture', file)
     return await $authHost.post('/api/tasks/', formData)
+}
+
+export const getUser = async (id) => {
+    return await $authHost.get(`/api/users/${id}`)
 }
