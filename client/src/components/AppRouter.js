@@ -35,7 +35,6 @@ const AppRouter = () => {
                     element={<Navigate to="/" replace />}
                 />
             </Routes>
-            <Footer/>
         </>
     );
 };
