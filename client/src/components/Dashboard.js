@@ -5,7 +5,7 @@ const Dashboard = ({answers}) => {
     let sum = 0
 
     answers.forEach(item => {
-        if (answersInfo.hasOwnProperty(item.text)) {
+        if (answersInfo.hasOwnProperty(item.answer)) {
             answersInfo[item.answer].count += 1
         } else {
             answersInfo[item.answer] = {count: 1}
