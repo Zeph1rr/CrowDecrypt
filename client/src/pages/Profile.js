@@ -3,8 +3,6 @@ import {useSelector} from "react-redux";
 import {changePassword, getTasksByOwner, getUser} from "../http/userAPI";
 import UserInfo from "../components/UserInfo";
 import TasksComponent from "../components/TasksComponent";
-import {Link} from "react-router-dom";
-
 const Profile = () => {
     const {user} = useSelector(state => state)
     const [userInfo, setUserInfo] = useState(null)
@@ -68,24 +66,26 @@ const Profile = () => {
     if (mode === 0) {
         return (
             <div className="container text-center">
-                <button onClick={() => setMode(1)} className="btn btn-primary col-4 mb-5">Мои задания</button>
+                <button onClick={() => setMode(1)} className="btn btn-primary w-50 mb-5">Мои задания</button>
                 <h1 className="text-center text mb-4">Профиль пользователя {userInfo.name}</h1>
                 <div className="card card_list">
                     <ul className="list-group list-group-flush">
                         {info && info.map(item => <UserInfo key={item.name} name={item.name} value={item.value}/>)}
                     </ul>
                 </div>
-                <div className="row flex-nowrap justify-content-between align-content-center">
-                    <input className="form-control col-4" type="password" value={newPassword}
-                           onChange={e => setNewPassword(e.target.value)}/>
-                    <button onClick={e => changePass(e)} className="btn btn-primary col-4">Сменить пароль</button>
+                <div>
+                    <form className="row flex-nowrap justify-content-between align-items-center">
+                        <input className="form-control w-50 h-25" type="password" value={newPassword}
+                               onChange={e => setNewPassword(e.target.value)} autoComplete="off"/>
+                        <button onClick={e => changePass(e)} className="btn btn-primary mx-5 w-50">Сменить пароль</button>
+                    </form>
                 </div>
             </div>
         );
     }
     return(
         <div className="container text-center">
-            <button onClick={() => setMode(0)} className="btn btn-primary col-4 mb-5">Мой профиль</button>
+            <button onClick={() => setMode(0)} className="btn btn-primary w-50 mb-5">Мой профиль</button>
             <h1 className="text-center text mb-4">Мои задания</h1>
             {<TasksComponent tasks={tasks} needAddTasks={false}/>}
         </div>

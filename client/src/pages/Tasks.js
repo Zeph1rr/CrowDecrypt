@@ -22,8 +22,7 @@ const Tasks = () => {
     return (
         <div className="container">
             {!isLoading }
-            {!isLoading && tasks.length > 0 && <TasksComponent tasks={tasks} needAddTasks={true}/>}
-            {!isLoading && !tasks.length && <h1 className="text text-center">Нет заданий</h1> }
+            {!isLoading && <TasksComponent tasks={tasks} needAddTasks={true}/>}
             {isLoading && <h1 className="text">Загрузка...</h1>}
         </div>
     )

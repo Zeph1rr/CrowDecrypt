@@ -19,7 +19,7 @@ const AppRouter = () => {
     }
 
     return (
-        <>
+        <div className="container">
             <Header/>
             <Routes>
                 {isAuth && authRoutes.map(({path, Component}) =>
@@ -34,7 +34,7 @@ const AppRouter = () => {
                     element={<Navigate to="/" replace />}
                 />
             </Routes>
-        </>
+        </div>
     );
 };
 

@@ -26,6 +26,7 @@ const TasksComponent = ({tasks, needAddTasks}) => {
             <ul className="list-group list-group-flush">
                 {needAddTasks && add()}
                 {tasks.reverse().map(task => <Task key={task.id} Task={task} />)}
+                {!tasks.length && <h2 className="text text-center">Нет заданий</h2>}
             </ul>
         </div>
     );
