@@ -20,7 +20,7 @@ const Dashboard = ({answers}) => {
     const answerComponent = (item) => {
         return(
             <li className="list-group-item row justify-content-between d-flex">
-                <p className="text"><b>{item}</b>: <b>{answersInfo[item].percent}%</b></p>
+                <p className="text"><b>{item}</b>: <b>{answersInfo[item].count} ({answersInfo[item].percent}%)</b></p>
             </li>
         )
     }
