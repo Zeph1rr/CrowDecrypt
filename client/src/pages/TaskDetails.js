@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {getTask, sendAnswer} from "../http/userAPI";
 import {useSelector} from "react-redux";
+import Dashboard from "../components/Dashboard";
 
 const TaskDetails = () => {
     const {id} = useParams()
@@ -11,7 +12,9 @@ const TaskDetails = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [answer, setAnswer] = useState('')
     const [answersCount, setAnswersCount] = useState(0)
+    const [allAnswers, setAllAnswers] = useState(null)
     const [isAnswered, setIsAnswered] = useState(false)
+    const [isOwner, setIsOwner] = useState(false)
     const imageLink = `/images/${task.image}` || '/images/null'
 
     const check_answers = (answers) => {
@@ -27,6 +30,10 @@ const TaskDetails = () => {
         try {
             const {taskInfo, count, answers} = await getTask(id)
             setTask(taskInfo)
+            if (taskInfo.userId === user.id) {
+                setIsOwner(true)
+            }
+            setAllAnswers(answers)
             setAnswersCount(count)
             check_answers(answers)
             setIsLoading(false)
@@ -57,9 +64,10 @@ const TaskDetails = () => {
                         <p className="text task_info">Автор: {task.user.name}</p>
                         <p className="text task_info">Ответов: {answersCount}</p>
                         <a href={imageLink} className="btn btn-primary text task_info">Открыть картинку на весь экран</a>
-                        <button disabled={isAnswered} onClick={async (e) => {await send(e)}} className="btn btn-primary text">{isAnswered ? 'Вы уже ответили на это задание' : 'Отправить ответ на задание'}</button>
+                        {!isOwner &&<button disabled={isAnswered} onClick={async (e) => {await send(e)}} className="btn btn-primary text">{isAnswered ? 'Вы уже ответили на это задание' : 'Отправить ответ на задание'}</button>}
                     </div>
-                    <textarea className="w-25" disabled={isAnswered} value={answer} onChange={e => setAnswer(e.target.value)} />
+                    {!isOwner && <textarea className="w-25" disabled={isAnswered} value={answer} onChange={e => setAnswer(e.target.value)} />}
+                    {isOwner && <Dashboard answers={allAnswers} />}
                 </div>
             </div>
         )

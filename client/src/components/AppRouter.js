@@ -2,7 +2,6 @@ import React from 'react';
 import {Routes, Route, Navigate} from "react-router-dom";
 import {authRoutes, publicRoutes} from "../routes";
 import Header from "./Header";
-import Footer from "./Footer";
 import Main from "../pages/Main";
 import {useDispatch, useSelector} from "react-redux";
 import {MAIN_ROUTE} from "../utils/constants";
