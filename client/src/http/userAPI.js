@@ -20,6 +20,11 @@ export const getTasks = async () => {
     return data.lines
 }
 
+export const getTasksByOwner = async (id) => {
+    const {data} = await $authHost.get(`/api/tasks/byowner/${id}`)
+    return data.lines
+}
+
 export const getTask = async (id) => {
     const task = await $authHost.get(`/api/tasks/${id}`)
     const answers = await $authHost.get(`/api/answers/bytask/${id}`)

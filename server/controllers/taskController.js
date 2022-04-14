@@ -19,7 +19,15 @@ class TaskController {
 
     async getAllByOwner(req, res) {
         const {id} = req.params
-        const lines = await Tasks.findAll({where: {userId: id}, order: ['id']})
+        const lines = await Tasks.findAll({
+            where: {userId: id},
+            order: ['id'],
+            include: [{
+                model: Users,
+                attributes: ["name"]
+            }],
+            attributes: ["id", "createdAt"]
+        })
         res.json({lines})
     }
 
