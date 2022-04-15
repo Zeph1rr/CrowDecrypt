@@ -14,7 +14,7 @@ const Header = () => {
 
     const {isAuth} = useSelector(state => state)
     return (
-        <div className="container">
+        <>
             <header className="d-flex flex-wrap justify-content-center py-3 mb-4">
                 <Link
                     to="/"
@@ -39,7 +39,7 @@ const Header = () => {
                     )}
                 </ul>
             </header>
-        </div>
+        </>
     );
 };
 

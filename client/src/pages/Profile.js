@@ -74,7 +74,7 @@ const Profile = () => {
                     </ul>
                 </div>
                 <div>
-                    <form className="row flex-nowrap justify-content-between align-items-center">
+                    <form className="row flex-nowrap justify-content-between align-items-center mb-5">
                         <input className="form-control w-50 h-25" type="password" value={newPassword}
                                onChange={e => setNewPassword(e.target.value)} autoComplete="off"/>
                         <button onClick={e => changePass(e)} className="btn btn-primary mx-5 w-50">Сменить пароль</button>

@@ -17,7 +17,6 @@ const Tasks = () => {
             }
         }
         fetchData()
-        console.log("fetch")
     }, [])
     return (
         <div className="container">

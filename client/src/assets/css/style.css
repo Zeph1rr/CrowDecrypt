@@ -11,6 +11,12 @@ body {
     max-width: 95vw;
 }
 
+header {
+    margin-left: 3rem !important;
+    max-width: 100%;
+    align-self: center;
+}
+
 /* logo */
 
 .logo {
