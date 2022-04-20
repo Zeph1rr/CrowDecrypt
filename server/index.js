@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs")
 const {Users} = require("./models/models")
 const path = require("path")
 
-const PORT = process.env.PORT || 5000
+const PORT = 3000
 
 const app = express()
 
@@ -28,10 +28,11 @@ const start = async () => {
     try {
         await sequelize.authenticate()
         await sequelize.sync()
-        const candidate = await Users.findOne({where: {email: "grianton535@gmail.com"}})
+        const adminEmail = process.env.ADMIN_EMAIL
+        const candidate = await Users.findOne({where: {email: adminEmail}})
         if (!candidate) {
             const hashedPassword = bcrypt.hashSync(process.env.ADMIN_PASSWORD, 8)
-            await Users.create({email: "grianton535@gmail.com", password: hashedPassword, role: 1, name: 'Zeph1rr'})
+            await Users.create({email: adminEmail, password: hashedPassword, role: 1, name: 'Zeph1rr'})
         }
         app.listen(PORT, () => {
             console.log(`Server started on port ${PORT}`)
