@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import Task from "./Task";
 import {addTask} from "../http/userAPI";
 
-const TasksComponent = ({tasks, needAddTasks}) => {
+const TasksComponent = ({tasks, needAddTasks, setNeedLoading}) => {
     const [file, setFile] = useState(null)
 
     const fileUploadHandler = async () => {
         await addTask(file)
         setFile(null)
+        setNeedLoading(true)
     }
 
     const add = () => {

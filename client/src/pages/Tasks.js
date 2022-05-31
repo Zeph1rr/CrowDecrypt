@@ -9,19 +9,20 @@ const Tasks = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                setIsLoading(true)
-                setTasks(await getTasks())
-                setIsLoading(false)
+                if (isLoading) {
+                    setTasks(await getTasks())
+                    setIsLoading(false)
+                }
             } catch (e) {
                 console.log(e)
             }
         }
         fetchData()
-    }, [])
+    }, [isLoading])
     return (
         <div className="container">
             {!isLoading }
-            {!isLoading && <TasksComponent tasks={tasks} needAddTasks={true}/>}
+            {!isLoading && <TasksComponent tasks={tasks} needAddTasks={true} setNeedLoading={setIsLoading}/>}
             {isLoading && <h1 className="text">Загрузка...</h1>}
         </div>
     )

@@ -46,6 +46,9 @@ class TaskController {
     async addTask(req, res, next) {
         try {
             const filename = `${uuidv4()}.${req.file.originalname.split('.').pop()}`
+            if (req.file.mimetype.indexOf('image') === -1) {
+                return next(ApiError.badRequest('bad filetype'))
+            }
             fs.rename(req.file.path, path.join('uploads', filename), async function (err) {
                 if (err) throw err;
                 const task = await Tasks.create({userId: Number(req.user.id), image: filename})
