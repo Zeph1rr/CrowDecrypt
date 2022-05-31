@@ -45,9 +45,12 @@ class TaskController {
 
     async addTask(req, res, next) {
         try {
+            if (!req.file) {
+                return next(ApiError.badRequest('Файл должен быть указан'))
+            }
             const filename = `${uuidv4()}.${req.file.originalname.split('.').pop()}`
             if (req.file.mimetype.indexOf('image') === -1) {
-                return next(ApiError.badRequest('bad filetype'))
+                return next(ApiError.badRequest('Файл должен быть картинкой!'))
             }
             fs.rename(req.file.path, path.join('uploads', filename), async function (err) {
                 if (err) throw err;
@@ -55,7 +58,7 @@ class TaskController {
                 return res.json({task})
             })
         } catch (e) {
-            return next(ApiError.internal("Неизвестная ошибка"))
+            return next(ApiError.internal("Неизвестная ошибка: " + e.message))
         }
     }
 
