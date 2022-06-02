@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 const Main = () => {
     return (
         <>
-            <main className="container position-absolute top-50 start-50 translate-middle">
+            <main className="container">
                 <div className="container container-sm col-10 b-main">
                     <div>
                         <p className="main_text">CrowDecrypt - сервис, где вы можете попросить помощи в расшифровке

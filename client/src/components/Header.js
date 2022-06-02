@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../assets/images/logo.png"
+import logo from "../assets/images/logo.jpg"
 import {useDispatch, useSelector} from "react-redux";
 import {authNavbar, publicNavbar} from "../routes";
 import {Link} from "react-router-dom";

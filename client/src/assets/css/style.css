@@ -3,18 +3,29 @@
     src: url('../fonts/veles.otf');
 }
 
-body {
-    background-image: url(../images/background.png);
-    -moz-background-image: url(../images/background.png);
-    -o-background-image: url(../images/background.png);
-    -webkit-background-image: url(../images/background.png);
-    max-width: 95vw;
+html {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    background: url(../images/background.jpg) center no-repeat;
+    background-size: cover;
 }
+
+body {
+    background: url(../images/background.jpg) center no-repeat;
+    background-size: cover;
+}
+
+
+
+
 
 header {
     margin-left: 3rem !important;
     max-width: 100%;
     align-self: center;
+    background: inherit;
+    background-size: cover;
 }
 
 /* logo */
