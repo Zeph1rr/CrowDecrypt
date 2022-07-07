@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const $host = axios.create({
-    baseURL: process.env.APP_URL
+    baseURL: 'http://backend'
 })
 
 const $authHost = axios.create({
-    baseURL: process.env.APP_URL
+    baseURL: 'http://backend'
 })
 
 const authInterceptor = config => {

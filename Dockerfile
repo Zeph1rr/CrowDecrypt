@@ -10,8 +10,6 @@ RUN npm ci --production
 
 COPY server/ .
 
-COPY client/build/ ./build/
-
 EXPOSE 3000
 
 CMD ["npm", "start"]

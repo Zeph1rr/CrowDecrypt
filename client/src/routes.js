@@ -1,9 +1,9 @@
-import Login from "./pages/Login";
-import {LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TASK_ROUTE, TASKS_ROUTE} from "./utils/constants";
-import Registration from "./pages/Registration";
-import Tasks from "./pages/Tasks";
-import TaskDetails from "./pages/TaskDetails";
-import Profile from "./pages/Profile";
+import Login from "../../../CrowDecrypt/client/src/pages/Login";
+import {LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TASK_ROUTE, TASKS_ROUTE} from "../../../CrowDecrypt/client/src/utils/constants";
+import Registration from "../../../CrowDecrypt/client/src/pages/Registration";
+import Tasks from "../../../CrowDecrypt/client/src/pages/Tasks";
+import TaskDetails from "../../../CrowDecrypt/client/src/pages/TaskDetails";
+import Profile from "../../../CrowDecrypt/client/src/pages/Profile";
 
 
 
