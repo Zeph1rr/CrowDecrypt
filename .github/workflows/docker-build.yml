@@ -32,4 +32,4 @@ jobs:
       - name: Push into registry
         run: |
           docker push zeph1rrinc/crowdecrypt-back:${{github.event.commits[0].message}}-SNAPSHOT
-          docker push zeph1rrinc/crowdecrypt-back:${{github.event.commits[0].message}}-SNAPSHOT
+          docker push zeph1rrinc/crowdecrypt-front:${{github.event.commits[0].message}}-SNAPSHOT
