@@ -1,6 +1,0 @@
-export const LOGIN_ROUTE = '/login'
-export const MAIN_ROUTE = '/'
-export const REGISTRATION_ROUTE = '/registration'
-export const TASKS_ROUTE = '/tasks'
-export const TASK_ROUTE = '/task/:id'
-export const PROFILE_ROUTE = '/profile'

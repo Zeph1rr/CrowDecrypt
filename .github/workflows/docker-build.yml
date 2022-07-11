@@ -11,14 +11,8 @@ jobs:
       - name: Check-out repository
         uses: actions/checkout@v2
 
-      - name: Install the react dependencies
-        run: cd client && npm ci --production
-
-      - name: Build the React app
-        run: cd client && npm run build
-
       - name: Build the Docker image
-        run: docker build -t zeph1rrio/crowdecrypt:${{github.event.commits[0].message}}-SNAPSHOT .
+        run: docker build -t zeph1rrio/crowdecrypt-backend:${{github.event.commits[0].message}}-SNAPSHOT .
 
       - name: Check images
         run: docker images | grep ${{github.event.commits[0].message}}
@@ -27,4 +21,4 @@ jobs:
         run: docker login -u zeph1rrio -p ${{secrets.DOCKER_HUB_PASS}}
 
       - name: Push into registry
-        run: docker push zeph1rrio/crowdecrypt:${{github.event.commits[0].message}}-SNAPSHOT
+        run: docker push zeph1rrio/crowdecrypt-backend:${{github.event.commits[0].message}}-SNAPSHOT
