@@ -2,7 +2,7 @@ name: BuildAndPushDockerImage
 
 on:
   push:
-    branches: [ frontend ]
+    branches: [ backend ]
 
 jobs:
   build-and-push:
